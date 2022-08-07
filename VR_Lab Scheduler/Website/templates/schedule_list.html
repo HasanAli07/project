@@ -1,0 +1,36 @@
+{% extends "base.html" %} 
+{% block title %}View Schedule{% endblock %}
+{% block content %}
+
+<h1 align="center">Welcome to VR Scheduler</h1>
+<br/>
+{% if tasks|length < 1 %}
+<p>There are no Appointment to Display.</p>
+<br/>
+<a class="btn btn-primary" href="{{url_for('views.schedule')}}">Click to Schedule</a>
+<a class="btn btn-primary" href="{{url_for('views.home')}}">Go Back</a>
+{% else %}
+<table>
+  <tr>
+    <th>Appt Start Date</th>
+    <th>Appt Start Time</th>
+    <th>Appt End Date</th>
+    <th>Appt End Time</th>
+    <th>Actions</th>
+  </tr>
+</table>
+<table>
+  {% for task in tasks %}
+    <tr>
+        <td>{{ task.content }}</td>
+        <td>
+            <a href="/delete/{{task.id}}">Delete</a>
+            <br/>
+            <a href="/update/{{task.id}}">Update</a>
+        </td>
+    </tr>
+  {% endfor %}
+{% endif %}
+</table>
+
+{% endblock %}

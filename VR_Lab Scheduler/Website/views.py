@@ -6,7 +6,6 @@ import json
 
 views = Blueprint('views', __name__)
 
-
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
@@ -22,6 +21,14 @@ def home():
             flash('Note added!', category='success')
 
     return render_template("home.html", user=current_user)
+
+@views.route('/schedule')
+def schedule():
+    return render_template("schedule.html", user=current_user)
+
+@views.route('/schedule-list')
+def schedule_list():
+    return render_template("schedule_list.html", user=current_user)
 
 
 @views.route('/delete-note', methods=['POST'])
